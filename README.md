@@ -30,6 +30,8 @@
 
 ### Overall
 - comments and documentation
+- Unit tests and integration tests
+-  Improved error handling
 
 #### ETL
 - Calculate city null values through the provided coordinates
@@ -42,7 +44,7 @@
 - Data modelling: add foreign key constraint for location_id
 
 #### API
-- Improve formatting: automatic float conversion on int types when reading from database.
+- Improve formatting: correct the automatic float conversion on int types when reading from database.
 - Improve formatting: add "id" value on JSON export
 - Improve performance: loadbalancing server, asynchronous calls with FastAPI and caching layer
 - Refactor code
