@@ -37,6 +37,7 @@
 ### Databases:
 - Improve format of data storage for Redis
 - Improve efficiency of data extraction Redis
+- UPSERT data into Postgres instead of INSERT
 - Use ORM for both SQL and NoSQL
 - Data modelling: add foreign key constraint for location_id
 
