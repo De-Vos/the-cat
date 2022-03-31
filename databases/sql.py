@@ -13,7 +13,6 @@ class Postgres():
         # read config file
         parser.read(filename)
 
-
         # get section, default to postgresql
         db = {}
         if parser.has_section(section):
@@ -24,6 +23,7 @@ class Postgres():
             raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
         return db
+        
 
     def write_df(self, df, table, schema):
           
@@ -32,13 +32,16 @@ class Postgres():
         
         conn.close()
 
+
     def read_db(self, query):
     
         conn = self.get_connection()
+        print(conn)
         df = pd.read_sql(query, conn, coerce_float=False)
         conn.close()
 
         return df
+
 
     def get_connection(self):
 
@@ -56,7 +59,11 @@ class Postgres():
 
 
 if __name__ == '__main__':
-    pass
+    
+    query = '''SELECT * 
+                FROM felyx.reservations'''
+    psql = Postgres()
+    print(psql.read_db(query))
 
 
     

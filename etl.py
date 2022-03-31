@@ -30,7 +30,6 @@ def transform_locations(df):
     return df_str.drop(columns=['Unnamed: 0'])
 
 
-
 def load(df):
 
     load_to_sql(df)
@@ -43,20 +42,18 @@ def load_to_sql(df, table, schema):
     psql.write_df(df, table, schema)
 
 
-def load_to_no_sql(df, db): 
+def load_to_no_sql(df, db, collection=None): 
 
-    r = no_sql.Redis()
-    r.set_df(df, db)
-
+    r = no_sql.MongoDB()
+    r.set_df(df, db, collection)
 
 
 def etl_reservations():
 
     df_raw = extract('data/assignment_reservations.csv')
     df_clean = transform_reservations(df_raw)
-    df_clean.to_csv('clearn_res.csv')
     load_to_sql(df_clean, table="reservations", schema='felyx')
-    load_to_no_sql(df_clean, db='table_reservations')
+    load_to_no_sql(df_clean, db='felyx', collection='reservations')
 
     print("reservation etl successfully completed")
 
@@ -66,15 +63,20 @@ def etl_locations():
     df_raw = extract('data/assignment_locations.csv')
     df_clean = transform_locations(df_raw)
     load_to_sql(df_clean, table="locations", schema='felyx')
-    load_to_no_sql(df_clean, db='table_locations')
+    load_to_no_sql(df_clean, db='felyx', collection='locations')
 
     print("location etl successfully completed")
 
 
-
-if __name__ == '__main__':
+def run_etls():
 
     etl_locations()
     etl_reservations()
+
+
+if __name__ == '__main__':
+
+    run_etls()
+
 
 
