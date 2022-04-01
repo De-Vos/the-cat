@@ -30,17 +30,19 @@
 
 #### ETL
 - Calculate city null values through the provided coordinates
+- Refactor code
 
 ### Databases:
 - Improve format of data storage for Redis
 - Improve efficiency of data extraction Redis
 - Use ORM for both SQL and NoSQL
 - Data modelling: add foreign key constraint for location_id
+- Refactor code
 
 #### API
 - Improve formatting: automatic float conversion on int types when reading from database.
 - Improve formatting: add "id" value on JSON export
-- Improve performance: loadbalancing server, asynchronous calls with FastAPI and caching layer
+- Improve performance: webserver, webser gateway interface, asynchronous calls with FastAPI and caching layer
 - Refactor code
 
 
